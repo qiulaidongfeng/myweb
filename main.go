@@ -7,14 +7,20 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"syscall"
 
 	"gitee.com/qiulaidongfeng/chatroom/go/chatroom/chatroom"
 	"gitee.com/qiulaidongfeng/nonamevote/nonamevote"
 	"github.com/gin-gonic/gin"
 	"github.com/qiulaidongfeng/mux"
+	"github.com/qiulaidongfeng/restart"
 )
 
 func main() {
+	restart.Run(Main)
+}
+
+func Main() {
 	m := mux.New()
 	m.AddStd("qiulaidongfeng.ip-ddns.com", nonamevote.S.Handler())
 	m.AddStd("chat.qiulaidongfeng.ip-ddns.com", chatroom.S.Handler())
@@ -30,7 +36,7 @@ func main() {
 	end := make(chan struct{})
 	go func() {
 		c := make(chan os.Signal, 1)
-		signal.Notify(c, os.Interrupt)
+		signal.Notify(c, os.Interrupt, syscall.SIGBUS)
 		<-c
 		fmt.Println("正在关机")
 		err := srv.Shutdown(context.Background())
