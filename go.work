@@ -3,14 +3,11 @@ go 1.24
 use (
 	.
 	..\nonamevote
-	..\chatroom\go
 	..\mux
 	..\restart
 )
 
 replace gitee.com/qiulaidongfeng/nonamevote/nonamevote => ..\nonamevote
-
-replace gitee.com/qiulaidongfeng/chatroom/go/chatroom/chatroom => ..\chatroom
 
 replace github.com/qiulaidongfeng/mux v0.0.0 => ..\mux
 

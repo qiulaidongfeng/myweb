@@ -9,7 +9,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"gitee.com/qiulaidongfeng/chatroom/go/chatroom/chatroom"
+	"gitee.com/qiulaidongfeng/chatroom/go/chatroom"
 	"gitee.com/qiulaidongfeng/nonamevote/nonamevote"
 	"github.com/gin-gonic/gin"
 	"github.com/qiulaidongfeng/mux"
