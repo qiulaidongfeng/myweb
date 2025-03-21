@@ -14,7 +14,7 @@ require (
 	filippo.io/edwards25519 v1.1.0 // indirect
 	gitee.com/qiulaidongfeng/cachefs v0.10.0 // indirect
 	github.com/boombuler/barcode v1.0.2 // indirect
-	github.com/bytedance/sonic v1.13.1 // indirect
+	github.com/bytedance/sonic v1.13.2 // indirect
 	github.com/bytedance/sonic/loader v0.2.4 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect
@@ -25,7 +25,7 @@ require (
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.25.0 // indirect
-	github.com/go-sql-driver/mysql v1.9.0 // indirect
+	github.com/go-sql-driver/mysql v1.9.1 // indirect
 	github.com/go-viper/mapstructure/v2 v2.2.1 // indirect
 	github.com/goccy/go-json v0.10.5 // indirect
 	github.com/golang/snappy v1.0.0 // indirect
@@ -47,7 +47,7 @@ require (
 	github.com/oschwald/maxminddb-golang v1.13.1 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
 	github.com/pquerna/otp v1.4.0 // indirect
-	github.com/redis/go-redis/v9 v9.7.2 // indirect
+	github.com/redis/go-redis/v9 v9.7.3 // indirect
 	github.com/sagikazarmark/locafero v0.8.0 // indirect
 	github.com/sagikazarmark/slog-shim v0.1.0 // indirect
 	github.com/sourcegraph/conc v0.3.0 // indirect
