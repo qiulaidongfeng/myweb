@@ -3,10 +3,10 @@ module myweb
 go 1.24
 
 require (
-	gitee.com/qiulaidongfeng/chatroom/go/chatroom v0.0.0-20250320143945-3f855d12898b
-	gitee.com/qiulaidongfeng/nonamevote v0.0.0-20250319134710-0970c6d27884
+	gitee.com/qiulaidongfeng/chatroom/go/chatroom v0.0.0-20250324030727-45a65ab4f33e
+	gitee.com/qiulaidongfeng/nonamevote v0.0.0-20250321114356-a2a6fc2ac756
 	github.com/gin-gonic/gin v1.10.0
-	github.com/qiulaidongfeng/mux v0.0.0-20250307122934-857ab727fbe7
+	github.com/qiulaidongfeng/mux v0.0.0-20250322034637-d46dda8cffe7
 	github.com/qiulaidongfeng/restart v0.0.0-20250301154432-c5cc53a1e116
 )
 
@@ -26,6 +26,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.25.0 // indirect
 	github.com/go-sql-driver/mysql v1.9.1 // indirect
+	github.com/go-viper/encoding/ini v0.1.1 // indirect
 	github.com/go-viper/mapstructure/v2 v2.2.1 // indirect
 	github.com/goccy/go-json v0.10.5 // indirect
 	github.com/golang/snappy v1.0.0 // indirect
