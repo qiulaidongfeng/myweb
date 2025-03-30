@@ -20,18 +20,19 @@ func main() {
 	restart.Run(Main)
 }
 
+var encryptS = gin.Default()
+
 func Main() {
+	encryptS.StaticFS("", gin.Dir("wasm", false))
+
 	m := mux.New()
 	m.AddStd("qiulaidongfeng.ip-ddns.com", nonamevote.S.Handler())
 	m.AddStd("chat.qiulaidongfeng.ip-ddns.com", chatroom.S.Handler())
-	s := gin.New()
-	s.NoRoute(func(ctx *gin.Context) {
-		m.ServeHTTP(ctx.Writer, ctx.Request)
-	})
+	m.AddStd("encrypt.qiulaidongfeng.ip-ddns.com", encryptS.Handler())
 
 	srv := &http.Server{
 		Addr:    ":443",
-		Handler: s.Handler(),
+		Handler: m,
 	}
 	end := make(chan struct{})
 	go func() {
