@@ -22,13 +22,17 @@ func main() {
 
 var encryptS = gin.Default()
 
+var blogS = gin.Default()
+
 func Main() {
 	encryptS.StaticFS("", gin.Dir("wasm", false))
+	blogS.StaticFS("", gin.Dir("blog", false))
 
 	m := mux.New()
 	m.AddStd("qiulaidongfeng.ip-ddns.com", nonamevote.S.Handler())
 	m.AddStd("chat.qiulaidongfeng.ip-ddns.com", chatroom.S.Handler())
 	m.AddStd("encrypt.qiulaidongfeng.ip-ddns.com", encryptS.Handler())
+	m.AddStd("blog.qiulaidongfeng.ip-ddns.com", blogS.Handler())
 
 	srv := &http.Server{
 		Addr:    ":443",
