@@ -6,7 +6,7 @@ require (
 	gitee.com/qiulaidongfeng/chatroom/go/chatroom v0.0.0-20250415031209-b5617a093c2b
 	gitee.com/qiulaidongfeng/nonamevote v0.0.0-20250416051043-d7491ccc1f06
 	github.com/gin-gonic/gin v1.10.0
-	github.com/qiulaidongfeng/mux v0.0.0-20250322034637-d46dda8cffe7
+	github.com/qiulaidongfeng/mux v0.0.0-20250420092920-fb82315059a1
 	github.com/qiulaidongfeng/restart v0.0.0-20250301154432-c5cc53a1e116
 )
 

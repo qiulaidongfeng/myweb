@@ -2,7 +2,10 @@ package main
 
 import (
 	"context"
+	"crypto/tls"
+	"errors"
 	"fmt"
+	"log"
 	"log/slog"
 	"net/http"
 	"os"
@@ -24,6 +27,8 @@ var encryptS = gin.Default()
 
 var blogS = gin.Default()
 
+var refuse = errors.New("refuse")
+
 func Main() {
 	encryptS.StaticFS("", gin.Dir("wasm", false))
 	blogS.StaticFS("", gin.Dir("blog", false))
@@ -34,9 +39,28 @@ func Main() {
 	m.AddStd("encrypt.qiulaidongfeng.ip-ddns.com", encryptS.Handler())
 	m.AddStd("blog.qiulaidongfeng.ip-ddns.com", blogS.Handler())
 
+	cert, err := tls.LoadX509KeyPair("./cert.pem", "./key.pem")
+	if err != nil {
+		log.Fatalf("Failed to load certificate: %v", err)
+	}
+
+	tlsConfig := &tls.Config{
+		GetCertificate: func(info *tls.ClientHelloInfo) (*tls.Certificate, error) {
+			// 检查 SNI 是否被允许访问，如果不是拒绝连接
+			if !m.Allow(info.ServerName) {
+				return nil, refuse
+			}
+
+			// 返回证书
+			return &cert, nil
+		},
+		MinVersion: tls.VersionTLS12, // 设置最低 TLS 版本
+	}
+
 	srv := &http.Server{
-		Addr:    ":443",
-		Handler: m,
+		Addr:      ":443",
+		TLSConfig: tlsConfig,
+		Handler:   m,
 	}
 	end := make(chan struct{})
 	go func() {
@@ -52,7 +76,7 @@ func Main() {
 		close(end)
 		fmt.Println("关机完成")
 	}()
-	err := srv.ListenAndServeTLS("./cert.pem", "./key.pem")
+	err = srv.ListenAndServeTLS("", "")
 	if err != nil && err != http.ErrServerClosed {
 		panic(err)
 	}
