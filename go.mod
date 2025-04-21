@@ -4,10 +4,10 @@ go 1.24
 
 require (
 	gitee.com/qiulaidongfeng/chatroom/go/chatroom v0.0.0-20250415031209-b5617a093c2b
-	gitee.com/qiulaidongfeng/nonamevote v0.0.0-20250416051043-d7491ccc1f06
+	gitee.com/qiulaidongfeng/nonamevote v0.0.0-20250421175952-8904c25fe6e7
 	github.com/gin-gonic/gin v1.10.0
 	github.com/qiulaidongfeng/mux v0.0.0-20250420092920-fb82315059a1
-	github.com/qiulaidongfeng/restart v0.0.0-20250301154432-c5cc53a1e116
+	github.com/qiulaidongfeng/restart v0.0.0-20250421180225-12cf9b72ad29
 )
 
 require (
