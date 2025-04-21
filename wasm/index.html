@@ -39,7 +39,7 @@
         <div class="row">
             <p>加解密全在本地进行</p>
             <p>输入框可从右下角点中拖动变大变小</p>
-            <p>js重写的新版本不兼容之前用go写的版本，因为js无法直接访问字符串的原始内存，旧版在<a href="/old.html">old</a></p>
+            <p>js重写的新版本不兼容之前用go写的版本，因为js的argon2库不支持不加salt哈希，旧版在<a href="/old.html">old</a></p>
         </div>
     </div>
 </body>
@@ -51,12 +51,7 @@
 
         // 使用 Web Crypto API 计算 SHA-256 哈希
         const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-
-        // 将哈希值转换为十六进制字符串
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-
-        return hashHex;
+        return new Uint8Array(hashBuffer);
     }
 
     // genKey 使用argon2id生成aes256密钥
