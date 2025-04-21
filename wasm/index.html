@@ -40,7 +40,7 @@
             <p>加解密全在本地进行</p>
             <p>输入框可从右下角点中拖动变大变小</p>
             <p>js重写的新版本不兼容之前用go写的版本，因为js的argon2库不支持不加salt哈希，旧版在<a href="/old.html">old</a></p>
-            <button class="btn btn-primary"><a class="text-white" href="/加解密.apk">安卓APP版下载</a></button>
+            <button id="download" class="btn btn-primary">安卓APP版下载</button>
         </div>
     </div>
 </body>
@@ -153,6 +153,9 @@
                 console.table(err);
             }
         });
+        $("#download").click(function(){
+            window.location.href += "/加解密.apk"
+        })
     })
 </script>
 
