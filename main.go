@@ -27,6 +27,8 @@ var encryptS = gin.Default()
 
 var blogS = gin.Default()
 
+var wxbotS = gin.Default()
+
 var refuse = errors.New("refuse")
 
 func Main() {
@@ -38,6 +40,7 @@ func Main() {
 	m.AddStd("chat.qiulaidongfeng.ip-ddns.com", chatroom.S.Handler())
 	m.AddStd("encrypt.qiulaidongfeng.ip-ddns.com", encryptS.Handler())
 	m.AddStd("blog.qiulaidongfeng.ip-ddns.com", blogS.Handler())
+	m.AddStd("wxbot.qiulaidongfeng.ip-ddns.com", wxbotS.Handler())
 
 	cert, err := tls.LoadX509KeyPair("./cert.pem", "./key.pem")
 	if err != nil {

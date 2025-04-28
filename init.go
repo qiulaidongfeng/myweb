@@ -16,6 +16,7 @@ import (
 	"gitee.com/qiulaidongfeng/chatroom/go/chatroom"
 	"gitee.com/qiulaidongfeng/nonamevote/nonamevote"
 	"github.com/gin-gonic/gin"
+	"github.com/qiulaidongfeng/wxbot/wxbot"
 )
 
 func init() {
@@ -29,6 +30,10 @@ func init() {
 
 	encryptS = gin.New()
 	encryptS.Use(gin.Recovery(), Logger("./encryptlog"))
+
+	wxbotS = gin.New()
+	wxbotS.Use(gin.Recovery(), Logger("./wxbotlog"))
+	wxbot.Handle(wxbotS)
 
 	runtime.GC()
 	debug.FreeOSMemory()
