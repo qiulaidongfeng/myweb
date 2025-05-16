@@ -94,6 +94,9 @@ func Logger(path string) func(*gin.Context) {
 		if strings.Contains(ug, "UptimeRobot") {
 			ug = "UptimeRobot"
 		}
+		if strings.Contains(ug, "JianKongBao") {
+			ug = "JianKongBao"
+		}
 
 		if _, ok := um.LoadOrStore(ClientIP, ug); ok {
 			ug = ""
