@@ -54,7 +54,7 @@ func Logger(path string) func(*gin.Context) {
 		buf.Flush()
 	})
 	return func(c *gin.Context) {
-		ClientIP := unique.Make(c.RemoteIP()).Value()
+		ClientIP := unique.Make(c.ClientIP()).Value()
 		count := nonamevote.AddIpCount(ClientIP)
 		expiration := nonamevote.GetExpiration()
 		maxcount := nonamevote.GetMaxCount()
