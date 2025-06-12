@@ -11,7 +11,7 @@ require (
 	github.com/qiulaidongfeng/wxbot v0.0.0-20250428174457-0ae1e77ea973
 )
 
-require github.com/qiulaidongfeng/ask_for_leave v0.5.0
+require github.com/qiulaidongfeng/ask_for_leave v0.8.0
 
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect
