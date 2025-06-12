@@ -29,6 +29,8 @@ var blogS = gin.Default()
 
 var wxbotS = gin.Default()
 
+var aflS *gin.Engine
+
 var refuse = errors.New("refuse")
 
 func Main() {
@@ -41,6 +43,7 @@ func Main() {
 	m.AddStd("encrypt.qiulaidongfeng.ip-ddns.com", encryptS.Handler())
 	m.AddStd("blog.qiulaidongfeng.ip-ddns.com", blogS.Handler())
 	m.AddStd("wxbot.qiulaidongfeng.ip-ddns.com", wxbotS.Handler())
+	m.AddStd("afl.qiulaidongfeng.ip-ddns.com", aflS.Handler())
 
 	cert, err := tls.LoadX509KeyPair("./cert.pem", "./key.pem")
 	if err != nil {

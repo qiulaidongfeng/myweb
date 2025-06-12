@@ -15,6 +15,7 @@ import (
 
 	"gitee.com/qiulaidongfeng/chatroom/go/chatroom"
 	"github.com/gin-gonic/gin"
+	"github.com/qiulaidongfeng/ask_for_leave/afl"
 	"github.com/qiulaidongfeng/nonamevote/nonamevote"
 	"github.com/qiulaidongfeng/wxbot/wxbot"
 )
@@ -34,6 +35,11 @@ func init() {
 	wxbotS = gin.New()
 	wxbotS.Use(gin.Recovery(), Logger("./wxbotlog"))
 	wxbot.Handle(wxbotS)
+
+	aflS = gin.New()
+	aflS.Use(gin.Recovery(), Logger("./afllog"))
+	afl.Route(aflS)
+	afl.MakeRoot(aflS)
 
 	runtime.GC()
 	debug.FreeOSMemory()
