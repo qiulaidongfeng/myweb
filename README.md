@@ -3,3 +3,5 @@
 
 wasm 旧版本来自 https://github.com/qiulaidongfeng/fynedemo
 2025年4月下旬用js和Bootstrap重写。
+
+afl 2025年6月中旬写的。
