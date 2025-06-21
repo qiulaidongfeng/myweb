@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"log/slog"
+	"net"
 	"net/http"
 	"os"
 	"os/signal"
@@ -17,6 +18,7 @@ import (
 	"github.com/qiulaidongfeng/mux"
 	"github.com/qiulaidongfeng/nonamevote/nonamevote"
 	"github.com/qiulaidongfeng/restart"
+	"github.com/quic-go/quic-go/http3"
 )
 
 func main() {
@@ -63,11 +65,37 @@ func Main() {
 		MinVersion: tls.VersionTLS12, // 设置最低 TLS 版本
 	}
 
-	srv := &http.Server{
-		Addr:      ":443",
+	udpAddr, err := net.ResolveUDPAddr("udp", ":https")
+	if err != nil {
+		panic(err)
+	}
+	udpConn, err := net.ListenUDP("udp", udpAddr)
+	if err != nil {
+		panic(err)
+	}
+	defer udpConn.Close()
+
+	quicServer := &http3.Server{
 		TLSConfig: tlsConfig,
 		Handler:   m,
 	}
+
+	srv := &http.Server{
+		Addr:      ":443",
+		TLSConfig: tlsConfig,
+		Handler: http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+			quicServer.SetQUICHeaders(w.Header())
+			m.ServeHTTP(w, req)
+		}),
+	}
+
+	go func() {
+		err := quicServer.Serve(udpConn)
+		if err != http.ErrServerClosed {
+			panic(err)
+		}
+	}()
+
 	end := make(chan struct{})
 	go func() {
 		c := make(chan os.Signal, 1)
@@ -78,6 +106,7 @@ func Main() {
 		if err != nil {
 			slog.Error("", "err", err)
 		}
+		quicServer.Shutdown(context.Background())
 		nonamevote.Close()
 		close(end)
 		fmt.Println("关机完成")
